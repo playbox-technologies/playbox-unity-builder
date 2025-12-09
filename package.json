@@ -1,0 +1,14 @@
+{
+  "name": "playbox-builder",
+  "displayName": "Playbox Builder",
+  "author": "playbox",
+  "version": "0.0.1",
+  "description": "A package that simplifies the assembly of projects for iOS and Android platforms.",
+  "keywords": [
+    "utility",
+    "tools"
+  ],
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+  }
+}
