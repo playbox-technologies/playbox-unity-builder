@@ -1,8 +1,6 @@
-
 #if UNITY_EDITOR && UNITY_ANDROID
 
 using System.Linq;
-using CI.Utils.Extentions;
 using UnityEditor.Build;
 using UnityEditor;
 
@@ -12,7 +10,6 @@ namespace Playbox.CI
     {
         public static void Build()
         {
-            DebugExtentions.BeginPrefixZone("Android");
             
             var scenes = EditorBuildSettings.scenes.Select(x => x.path).ToArray();
             
@@ -44,15 +41,12 @@ namespace Playbox.CI
             if (SmartCLA.Validations.HasKeystorePath)
             {
                 PlayerSettings.Android.keystoreName = SmartCLA.Arguments.KeystorePath;
-                $"KeystorePath set to {SmartCLA.Arguments.KeystorePath}".PlayboxInfo("Keystore Path");
+               
             }
 
             if (!SmartCLA.Validations.HasBuildLocation)
             {
-                "No build location provided".PlayboxException("Argument Error");
             }
-
-            DebugExtentions.EndPrefixZone();
             
             BuildOptions buildOptions = BuildOptions.None;
             
@@ -69,7 +63,7 @@ namespace Playbox.CI
             
             if (!System.IO.File.Exists(manifestPath))
             {
-                "Unity will generate the file automatically.".PlayboxWarning("AndroidManifest.xml not found in project folder.");
+                
                 return;
             }
             
@@ -91,9 +85,7 @@ namespace Playbox.CI
                     $"<application android:debuggable=\"{enabled.ToString().ToLower()}\" "
                 );
             }
-    
-            "AndroidManifest.xml changed".PlayboxLog($"debuggable flag changed to {enabled.ToString().ToLower()}.");
-        
+            
             System.IO.File.WriteAllText(manifestPath, manifestText);
             AssetDatabase.Refresh();
         }
