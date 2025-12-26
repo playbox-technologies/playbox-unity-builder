@@ -1,9 +1,15 @@
 ﻿#if UNITY_EDITOR && UNITY_IOS
 
 using UnityEditor.iOS.Xcode;
+using UnityEngine;
 
 namespace Playbox.CI
 {
+    public class BuilderData
+    {
+        public static string gameId = Application.identifier;
+    }
+
     public class ExportOptionsIOS
     {
         public string BuildVersion { get; set; } = "0.0.0";
@@ -32,7 +38,7 @@ namespace Playbox.CI
             
             var profiles = document.root.CreateDict("provisioningProfiles");
             
-            profiles.SetString(Playbox.Data.Playbox.GameId, SmartCLA.Arguments.ProvisionProfileIos);
+            profiles.SetString(BuilderData.gameId, SmartCLA.Arguments.ProvisionProfileIos);
         }
 
         public override string ToString()
