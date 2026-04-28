@@ -5,7 +5,7 @@ using System.Xml;
 using UnityEditor;
 using UnityEngine;
 
-namespace Playbox.CI
+namespace Editor.Editor
 {
     public class DependencyGenerator
     {

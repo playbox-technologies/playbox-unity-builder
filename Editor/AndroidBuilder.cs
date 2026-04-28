@@ -15,7 +15,11 @@ namespace Playbox.CI
             
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
 
+            EditorPrefs.SetInt("AndroidMaxJvmHeapSize", 8192);
+            
             EditorUserBuildSettings.development = SmartCLA.Validations.HasDevelopmentMode || SmartCLA.Validations.HasDebugMode;
+            EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
+            
 
             if (EditorUserBuildSettings.development)
             {
